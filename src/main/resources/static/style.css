@@ -47,3 +47,29 @@ input[type="button"] {
     padding: 0;
     float: left;
 }
+
+.nameForm {
+    position: fixed;
+    width: 30vw;
+    top: 20vh;
+    left: 30vw;
+    padding: 0;
+    height: 40vh;
+    background: white;
+}
+
+.nameForm input {
+    display: block;
+    width: 85%;
+    color: black;
+    margin: auto;
+    padding: 0;
+    border-bottom: 1px solid black;
+}
+
+.nameForm label {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}

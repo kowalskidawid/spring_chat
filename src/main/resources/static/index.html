@@ -6,12 +6,17 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body onload="connect()">
+    <div class="nameForm">
+        <label for = "name"> Imię: </label>
+        <input type="text" id = "name" placeholder="Wprowadź imię">
+        <input type="button" id = "setName" onclick="setName()">
+    </div>
     <audio src="clearly.mp3"> </audio>
     <div class="conteiner">
         <div id="chat"></div>
         <div class="form">
             <input type="text" id = "message" placeholder="Napisz coś i naciśnij Enter lub naciśnij '<b>wyślij</b>'" autofocus>
-            <input type="button" value="Wyślij" onclick="sendMessage()"/>
+            <input type="text" value="Wyślij" onclick="sendMessage()"/>
         </div>
     </div>
 
