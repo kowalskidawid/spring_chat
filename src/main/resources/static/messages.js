@@ -14,14 +14,24 @@ function connect() {
 
 function showMessage(message) {
     message = JSON.parse(message);
-    if(name != message.name) {
-        // start notifier
-        document.querySelector("audio").play();
-    }
 
     // Create new message
     let newMessage = document.createElement('div');
-    newMessage.innerHTML = `<p>${message.name}</p><p>${message.value}</p>`;
+    if(name !== message.name) {
+        // start notifier
+        document.querySelector("audio").play();
+
+        newMessage.classList.add("foreignDiv");
+
+        // insert data
+        newMessage.innerHTML = `<p class="name">${message.name}</p><p class = "message">${message.value}</p>`;
+    }
+    else {
+        // insert data
+        newMessage.innerHTML = `<p class="name">${message.name}</p><p class="yourMessage">${message.value}</p>`;
+    }
+
+    updateScroll();
 
     // display new message
     document.querySelector("#chat").appendChild(newMessage);
@@ -41,8 +51,29 @@ document.querySelector('#message').addEventListener('keypress', function (e) {
 
 function setName() {
     name = document.querySelector("#name").value;
-
-    if (name.length != 0) {
+    if (name.length !== 0) {
         document.querySelector(".nameForm").remove();
+        saveNameToCookie(name);
     }
+}
+
+function saveNameToCookie(name) {
+    document.cookie = `username=${name};`;
+}
+(function getNameFormCookie() {
+    let cookieString = document.cookie;
+    let cookies = cookieString.split(';');
+    cookies.forEach((element) => {
+       let cookieElem = element.split("=");
+       cookieElem[0] = cookieElem[0].trim();
+       if( cookieElem[0] === "username") {
+            name = cookieElem[1];
+            document.querySelector(".nameForm").remove();
+       }
+    });
+})();
+
+function updateScroll(){
+    let element = document.querySelector("#chat");
+    element.scrollTop = element.scrollHeight;
 }
